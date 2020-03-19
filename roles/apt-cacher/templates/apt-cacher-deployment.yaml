@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apt-cacher-ng
+  namespace: cache-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apt-cacher-ng
+  template:
+    metadata:
+      labels:
+        app: apt-cacher-ng
+    spec:
+      containers:
+      - name: apt-cacher-ng
+        image: r1cebank/apt-cacher-ng:latest
+        ports:
+        - containerPort: 3142
+        volumeMounts:
+          - name: apt-cacher-storage
+            mountPath: /var/cache/apt-cacher-ng
+      volumes:
+        - name: apt-cacher-storage
+          persistentVolumeClaim:
+            claimName: apt-cacher-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: apt-cacher-pv-claim
+  namespace: cache-service
+  labels:
+    app: apt-cacher-ng
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "nfs-client"
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apt-cacher-ng-http
+  namespace: cache-service
+  labels:
+    app: apt-cacher-ng
+spec:
+  ports:
+    - port: 3142
+  selector:
+    app: apt-cacher-ng
+  type: LoadBalancer
