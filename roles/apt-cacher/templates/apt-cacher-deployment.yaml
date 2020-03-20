@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: apt-cacher-ng
-  namespace: cache-service
+  namespace: cache-services
 spec:
   replicas: 1
   selector:
@@ -30,7 +30,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: apt-cacher-pv-claim
-  namespace: cache-service
+  namespace: cache-services
   labels:
     app: apt-cacher-ng
 spec:
@@ -45,7 +45,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: apt-cacher-ng-http
-  namespace: cache-service
+  namespace: cache-services
   labels:
     app: apt-cacher-ng
 spec:

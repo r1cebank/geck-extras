@@ -15,8 +15,12 @@ temp_dir: /tmp/geck
 # which issuer to use for ingress
 ingress_issuer: letsencrypt-staging
 
+# network related
+ingress_class: traefik
+
 # Ingress Information for services here
 drone_ingress_domain: drone.elica.io
+gitea_ingress_domain: git.elica.io
 
 # Unifi specific information here
 unifi_url: https://192.168.1.9:8443
