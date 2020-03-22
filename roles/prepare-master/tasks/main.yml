@@ -1,0 +1,11 @@
+---
+- name: Remove temp files directory
+  become: yes
+  file:
+    path: "{{ temp_dir }}"
+    state: absent
+
+- name: Create temp directory
+  file:
+    path: "{{ temp_dir }}"
+    state: directory

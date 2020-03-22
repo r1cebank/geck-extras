@@ -39,7 +39,7 @@ spec:
   storageClassName: "nfs-client"
   resources:
     requests:
-      storage: 20Gi
+      storage: {{ apt_cacher_pvc_size }}
 ---
 apiVersion: v1
 kind: Service

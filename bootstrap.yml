@@ -1,0 +1,7 @@
+---
+- hosts: kube_master
+  any_errors_fatal: true
+  roles:
+    - prepare-master
+
+- import_playbook: extras.yml

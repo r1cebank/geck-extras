@@ -7,6 +7,10 @@ spec:
   chart: stable/drone
   set:
     images.server.tag: "{{ drone_image_tag }}"
+    images.secrets.repository: "{{ drone_secrets_image }}"
+    images.secrets.tag: "{{ drone_secrets_image_tag }}"
+    images.runner.tag: "{{ drone_runner_image_tag }}"
+    images.agent.tag: "{{ drone_agent_image_tag }}"
     persistence.storageClass: "nfs-client"
     server.host: "{{ drone_ingress_domain }}"
     server.protocol: https
