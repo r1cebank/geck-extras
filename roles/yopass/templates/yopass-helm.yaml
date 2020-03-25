@@ -1,0 +1,11 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: yopass
+  namespace: personal-utils
+spec:
+  chart: yopass
+  repo: {{ personal_chart_url }}
+  set:
+    image.tag: {{ yopass_image_tag }}
+    image.pullPolicy: Always

@@ -54,3 +54,4 @@ spec:
   selector:
     app: apt-cacher-ng
   type: LoadBalancer
+  loadBalancerIP: {{ apt_cacher_loadbalancer_ip }}

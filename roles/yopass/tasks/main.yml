@@ -1,0 +1,24 @@
+---
+- name: Ensure utlis namespace
+  k8s:
+    name: personal-utils
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    kind: Namespace
+    state: present
+
+- name: Copy over helm deploy file
+  template:
+    src: "{{ item }}"
+    dest: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - yopass-helm.yaml
+    - yopass-ingress.yaml
+
+- name: Install services from helm
+  k8s:
+    state: present
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - yopass-helm.yaml
+    - yopass-ingress.yaml

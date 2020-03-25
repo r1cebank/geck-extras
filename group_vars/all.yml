@@ -1,5 +1,6 @@
 # Chart urls
 influxdata_chart_url: https://helm.influxdata.com/
+personal_chart_url: https://r1cebank.github.io/helm-charts
 
 # Image and image tags
 influxdb_image_tag: 1.7.10
@@ -12,6 +13,7 @@ drone_secrets_image: drone/kubernetes-secrets
 drone_secrets_image_tag: linux-arm
 drone_runner_image_tag: 1.0.0-beta.2
 drone_agent_image_tag: latest
+yopass_image_tag: latest-arm
 
 # file related
 temp_dir: /tmp/geck
@@ -21,10 +23,12 @@ ingress_issuer: letsencrypt-staging
 
 # network related
 ingress_class: traefik
+apt_cacher_loadbalancer_ip: 192.168.1.123
 
 # Ingress Information for services here
 drone_ingress_domain: drone.elica.io
 gitea_ingress_domain: git.elica.io
+yopass_ingress_domain: yopass.elica.io
 
 # Unifi specific information here
 unifi_url: https://192.168.1.9:8443
@@ -37,4 +41,4 @@ influx_db_init_db: unifi
 ansible_python_interpreter: "/usr/bin/python"
 
 # apt-cacher
-apt_cacher_pvc_size: 20Gi
+apt_cacher_pvc_size: 50Gi
