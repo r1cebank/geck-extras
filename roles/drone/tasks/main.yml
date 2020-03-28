@@ -7,6 +7,7 @@
     - drone-secrets.yaml
     - drone-ingress.yaml
     - drone-helm.yaml
+    - drone-runner-helm.yaml
 
 - name: Create drone namespace
   k8s:
@@ -35,4 +36,5 @@
     src: "{{ temp_dir }}/{{ item }}"
   with_items:
     - drone-helm.yaml
+    - drone-runner-helm.yaml
     - drone-ingress.yaml

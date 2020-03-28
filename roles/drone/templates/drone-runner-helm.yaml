@@ -1,0 +1,11 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: drone-runner-kube
+  namespace: drone
+spec:
+  repo: {{ drone_chart_url }}
+  chart: drone-runner-kube
+  set:
+    image.runner.tag: "{{ drone_runner_image_tag }}"
+    env.DRONE_RPC_SECRET: "{{ drone_rpc_secret }}"

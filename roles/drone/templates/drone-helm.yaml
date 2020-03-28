@@ -4,18 +4,15 @@ metadata:
   name: drone
   namespace: drone
 spec:
-  chart: stable/drone
+  repo: {{ drone_chart_url }}
+  chart: drone
   set:
-    images.server.tag: "{{ drone_image_tag }}"
-    images.secrets.repository: "{{ drone_secrets_image }}"
-    images.secrets.tag: "{{ drone_secrets_image_tag }}"
-    images.runner.tag: "{{ drone_runner_image_tag }}"
-    images.agent.tag: "{{ drone_agent_image_tag }}"
-    persistence.storageClass: "nfs-client"
-    server.host: "{{ drone_ingress_domain }}"
-    server.protocol: https
-    sourceControl.provider: gitea
-    sourceControl.secret: drone-gitea-secret
-    sourceControl.gitea.clientID: "{{ drone_oauth_client_id }}"
-    sourceControl.gitea.clientSecretKey: client_secret
-    sourceControl.gitea.server: "https://{{ gitea_ingress_domain }}"
+    image.tag: "{{ drone_image_tag }}"
+    persistentVolume.storageClass: "nfs-client"
+    extraSecretNamesForEnvFrom[0]: drone-gitea-secret
+    env.DRONE_SERVER_HOST: "{{ drone_ingress_domain }}"
+    env.DRONE_SERVER_PROTO: https
+    env.DRONE_GIT_ALWAYS_AUTH: "true"
+    env.DRONE_GITEA_CLIENT_ID: "{{ drone_oauth_client_id }}"
+    env.DRONE_GITEA_SERVER: "https://{{ gitea_ingress_domain }}"
+    env.DRONE_RPC_SECRET: "{{ drone_rpc_secret }}"

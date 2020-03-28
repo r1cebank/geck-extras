@@ -7,6 +7,8 @@
 
     - name: drone_oauth_client_secret
       prompt: "What is the Gitea app Oauth client secret?"
+    - name: drone_rpc_secret
+      prompt: "What is the shared rpc secret"
   any_errors_fatal: true
   roles:
     - drone
