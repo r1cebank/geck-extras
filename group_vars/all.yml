@@ -17,7 +17,7 @@ yopass_image_tag: latest-arm
 temp_dir: /tmp/geck
 
 # which issuer to use for ingress
-ingress_issuer: letsencrypt-staging
+ingress_issuer: certissuer-staging
 
 # network related
 ingress_class: traefik
