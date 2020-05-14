@@ -16,17 +16,14 @@ yopass_image_tag: latest-arm
 # file related
 temp_dir: /tmp/geck
 
-# which issuer to use for ingress
-ingress_issuer: certissuer-staging
-
 # network related
-ingress_class: traefik
 apt_cacher_loadbalancer_ip: 192.168.1.123
 
 # Ingress Information for services here
 drone_ingress_domain: drone.elica.io
 gitea_ingress_domain: git.elica.io
 yopass_ingress_domain: yopass.elica.io
+chronograf_ingress_domain: stat.elica.io
 
 # Unifi specific information here
 unifi_url: https://192.168.1.9:8443

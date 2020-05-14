@@ -14,6 +14,7 @@
     - influxdb-helm.yaml
     - telegraf-helm.yaml
     - chronograf-helm.yaml
+    - chronograf-ingress.yaml
     - kapacitor-helm.yaml
     - unifi-secrets.yaml
     - unifi-poller-deployment.yaml
@@ -39,5 +40,6 @@
     - influxdb-helm.yaml
     - telegraf-helm.yaml
     - chronograf-helm.yaml
+    - chronograf-ingress.yaml
     # - kapacitor-helm.yaml
     - unifi-poller-deployment.yaml

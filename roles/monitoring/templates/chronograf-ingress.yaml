@@ -1,17 +1,17 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
-  name: drone-ingress
-  namespace: drone
+  name: chronograf-ingress
+  namespace: monitoring
 spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`{{ drone_ingress_domain }}`)
+    - match: Host(`{{ chronograf_ingress_domain }}`)
       kind: Rule
       services:
-      - name: drone
+      - name: chronograf-chronograf
         port: 80
       middlewares:
-        - name: kube-system-security@kubernetescrd
+        - name: kube-system-traefik-sso@kubernetescrd
   tls: {}

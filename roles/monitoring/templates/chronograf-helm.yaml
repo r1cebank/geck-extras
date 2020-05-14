@@ -9,5 +9,4 @@ spec:
   set:
     image.repository: chronograf
     image.tag: {{ chronograf_image_tag }}
-    service.type: LoadBalancer
     persistence.storageClass: "nfs-client"
