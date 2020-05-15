@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: apt-cacher-ng
-        image: r1cebank/apt-cacher-ng:latest
+        image: {{ apt_cacher_image }}
         ports:
         - containerPort: 3142
         volumeMounts:

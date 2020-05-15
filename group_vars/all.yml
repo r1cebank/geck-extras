@@ -12,6 +12,8 @@ drone_image_tag: 1.6.5
 drone_runner_image_tag: 1.0.0-beta.2
 unifi_poller_image: golift/unifi-poller:latest
 yopass_image_tag: latest-arm
+apt_cacher_image: r1cebank/apt-cacher-ng:latest
+code_server_image: r1cebank/code-server:latest
 
 # file related
 temp_dir: /tmp/geck
@@ -24,6 +26,7 @@ drone_ingress_domain: drone.elica.io
 gitea_ingress_domain: git.elica.io
 yopass_ingress_domain: yopass.elica.io
 chronograf_ingress_domain: stat.elica.io
+code_server_ingress_domain: ide.elica.io
 
 # Unifi specific information here
 unifi_url: https://192.168.1.9:8443
@@ -37,3 +40,6 @@ ansible_python_interpreter: "/usr/bin/python"
 
 # apt-cacher
 apt_cacher_pvc_size: 50Gi
+
+# code-server
+code_server_pvc_size: 50Gi

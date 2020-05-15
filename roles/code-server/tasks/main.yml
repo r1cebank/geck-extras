@@ -1,0 +1,25 @@
+---
+- name: Copy over deploy file
+  template:
+    src: "{{ item }}"
+    dest: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - code-server-deployment.yaml
+    - code-server-ingress.yaml
+
+- name: Create personal-utils namespace
+  k8s:
+    name: personal-utils
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    kind: Namespace
+    state: present
+
+- name: Apply deployment file
+  k8s:
+    state: present
+    namespace: drone
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - code-server-deployment.yaml
+    - code-server-ingress.yaml

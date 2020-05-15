@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: code-server
+  namespace: personal-utils
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: code-server
+  template:
+    metadata:
+      labels:
+        app: code-server
+    spec:
+      containers:
+      - name: code-server
+        image: {{ code_server_image }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+          - name: code-server-data-storage
+            mountPath: /data
+          - name: code-server-projects-storage
+            mountPath: /projects
+      volumes:
+        - name: code-server-data-storage
+          persistentVolumeClaim:
+            claimName: code-server-data-pv-claim
+        - name: code-server-projects-storage
+          persistentVolumeClaim:
+            claimName: code-server-projects-pv-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: code-server-projects-pv-claim
+  namespace: personal-utils
+  labels:
+    app: code-server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "nfs-client"
+  resources:
+    requests:
+      storage: {{ code_server_pvc_size }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: code-server-data-pv-claim
+  namespace: personal-utils
+  labels:
+    app: code-server
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "nfs-client"
+  resources:
+    requests:
+      storage: 4Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: code-server-http
+  namespace: personal-utils
+  labels:
+    app: code-server
+spec:
+  ports:
+    - port: 8000
+  selector:
+    app: code-server
+  type: ClusterIP

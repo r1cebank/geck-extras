@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: code-server-ingress
+  namespace: personal-utils
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`{{ code_server_ingress_domain }}`)
+      kind: Rule
+      services:
+      - name: code-server-http
+        port: 8000
+      middlewares:
+        - name: kube-system-traefik-sso@kubernetescrd
+  tls: {}
