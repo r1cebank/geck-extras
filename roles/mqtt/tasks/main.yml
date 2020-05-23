@@ -1,0 +1,22 @@
+---
+- name: Ensure iot namespace
+  k8s:
+    name: iot
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    kind: Namespace
+    state: present
+
+- name: Copy over helm deploy file
+  template:
+    src: "{{ item }}"
+    dest: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - mqtt-helm.yaml
+
+- name: Install services from helm
+  k8s:
+    state: present
+    kubeconfig: /etc/rancher/k3s/k3s.yaml
+    src: "{{ temp_dir }}/{{ item }}"
+  with_items:
+    - mqtt-helm.yaml

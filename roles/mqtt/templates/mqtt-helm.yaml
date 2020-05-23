@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: mosquitto
+  namespace: iot
+spec:
+  chart: mosquitto
+  repo: {{ personal_chart_url }}
+  set:
+    image.tag: {{ mqtt_image_tag }}
+    service.type: LoadBalancer
+    service.loadBalancerIP: {{ mqtt_loadbalancer_ip }}

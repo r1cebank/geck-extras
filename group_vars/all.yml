@@ -14,12 +14,14 @@ unifi_poller_image: golift/unifi-poller:latest
 yopass_image_tag: latest-arm
 apt_cacher_image: r1cebank/apt-cacher-ng:latest
 code_server_image: r1cebank/code-server:latest
+mqtt_image_tag: 1.6.9
 
 # file related
 temp_dir: /tmp/geck
 
 # network related
 apt_cacher_loadbalancer_ip: 192.168.1.123
+mqtt_loadbalancer_ip: 192.168.1.124
 
 # Ingress Information for services here
 drone_ingress_domain: drone.elica.io

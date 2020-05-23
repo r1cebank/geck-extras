@@ -16,3 +16,4 @@
     - apt-cacher
     - yopass
     - code-server
+    - mqtt
