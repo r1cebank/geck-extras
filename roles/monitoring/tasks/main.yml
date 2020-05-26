@@ -41,5 +41,5 @@
     - telegraf-helm.yaml
     - chronograf-helm.yaml
     - chronograf-ingress.yaml
-    # - kapacitor-helm.yaml
+    - kapacitor-helm.yaml
     - unifi-poller-deployment.yaml

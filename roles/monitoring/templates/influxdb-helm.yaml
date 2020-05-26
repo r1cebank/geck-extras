@@ -9,5 +9,17 @@ spec:
   set:
     image.tag: {{ influxdb_image_tag }}
     persistence.storageClass: "nfs-client"
-    env[0].name: INFLUXDB_DB
-    env[0].value: {{ influx_db_init_db }}
+    # large delay used to make sure container dont fail on WAL recovery https://github.com/influxdata/tick-charts/issues/75
+    livenessProbe.initialDelaySeconds: 600
+  valuesContent: |-
+    config:
+      http:
+        flux-enabled: true
+    initScripts:
+      enabled: true
+      scripts:
+        init.iql: |+
+          CREATE DATABASE "{{ influx_db_init_db }}" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+          CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+          CREATE DATABASE "iot" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+
