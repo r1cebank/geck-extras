@@ -8,6 +8,7 @@ spec:
   repo: {{ influxdata_chart_url }}
   set:
     image.tag: {{ influxdb_image_tag }}
+    persistence.enabled: true
     persistence.storageClass: "nfs-client"
     # large delay used to make sure container dont fail on WAL recovery https://github.com/influxdata/tick-charts/issues/75
     livenessProbe.initialDelaySeconds: 600
