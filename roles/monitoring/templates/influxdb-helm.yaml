@@ -19,7 +19,6 @@ spec:
       enabled: true
       scripts:
         init.iql: |+
-          CREATE DATABASE "{{ influx_db_init_db }}" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
-          CREATE DATABASE "telegraf" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
-          CREATE DATABASE "iot" WITH DURATION 30d REPLICATION 1 NAME "rp_30d"
+          CREATE DATABASE "{{ influxdb_unifi_db }}"
+          CREATE DATABASE "iot"
 
