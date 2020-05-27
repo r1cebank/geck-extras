@@ -9,4 +9,5 @@ spec:
   set:
     image.repository: chronograf
     image.tag: {{ chronograf_image_tag }}
+    persistence.enabled: true
     persistence.storageClass: "nfs-client"
